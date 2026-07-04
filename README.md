@@ -1,92 +1,154 @@
-<!--
-title: 'AWS Simple HTTP Endpoint example in NodeJS'
-description: 'This template demonstrates how to make a simple HTTP API with Node.js running on AWS Lambda and API Gateway using the Serverless Framework.'
-layout: Doc
-framework: v3
-platform: AWS
-language: nodeJS
-authorLink: 'https://github.com/serverless'
-authorName: 'Serverless, inc.'
-authorAvatar: 'https://avatars1.githubusercontent.com/u/13742415?s=200&v=4'
--->
+# AWS Python HTTP API using Serverless Framework
 
-# Serverless Framework Node HTTP API on AWS
+## Project Overview
 
-This template demonstrates how to make a simple HTTP API with Node.js running on AWS Lambda and API Gateway using the Serverless Framework.
+This project demonstrates how to build and deploy a **serverless HTTP API** using **Python**, **AWS Lambda**, **Amazon API Gateway**, and the **Serverless Framework**.
 
-This template does not include any kind of persistence (database). For more advanced examples, check out the [serverless/examples repository](https://github.com/serverless/examples/) which includes Typescript, Mongo, DynamoDB and other examples.
+Instead of managing servers, the application uses AWS Lambda to execute Python code only when an HTTP request is received, making it scalable and cost-effective.
 
-## Usage
+---
 
-### Deployment
+## Architecture
 
 ```
-$ serverless deploy
+Client
+   │
+   ▼
+Amazon API Gateway
+   │
+   ▼
+AWS Lambda
+   │
+   ▼
+Python Handler (handler.py)
+   │
+   ▼
+JSON Response
 ```
 
-After deploying, you should see output similar to:
+---
 
-```bash
-Deploying aws-node-http-api-project to stage dev (us-east-1)
+## AWS Services Used
 
-✔ Service deployed to stack aws-node-http-api-project-dev (152s)
+- AWS Lambda
+- Amazon API Gateway (HTTP API)
+- AWS CloudFormation (via Serverless Framework)
 
-endpoint: GET - https://xxxxxxxxxx.execute-api.us-east-1.amazonaws.com/
-functions:
-  hello: aws-node-http-api-project-dev-hello (1.9 kB)
+---
+
+## Technologies Used
+
+- Python
+- Serverless Framework
+- YAML
+- Git
+- GitHub
+- AWS Cloud
+
+---
+
+## Features
+
+- Serverless architecture
+- HTTP API endpoint
+- Event-driven execution
+- Automatic deployment
+- JSON response
+- No server management
+
+---
+
+## Project Structure
+
+```
+aws-python-http-api/
+│
+├── handler.py
+├── serverless.yml
+├── README.md
+├── .gitignore
+└── screenshots/
 ```
 
-_Note_: In current form, after deployment, your API is public and can be invoked by anyone. For production deployments, you might want to configure an authorizer. For details on how to do that, refer to [http event docs](https://www.serverless.com/framework/docs/providers/aws/events/apigateway/).
+---
 
-### Invocation
+## Lambda Function
 
-After successful deployment, you can call the created application via HTTP:
+The Lambda function returns a JSON response when an HTTP GET request is received.
 
-```bash
-curl https://xxxxxxx.execute-api.us-east-1.amazonaws.com/
-```
-
-Which should result in response similar to the following (removed `input` content for brevity):
+Example Response:
 
 ```json
 {
-  "message": "Go Serverless v2.0! Your function executed successfully!",
-  "input": {
-    ...
-  }
+  "message": "Welcome to my AWS Serverless HTTP API!",
+  "developer": "Vedashri Giri",
+  "technology": "Python + AWS Lambda + API Gateway",
+  "status": "Success"
 }
 ```
 
-### Local development
+---
 
-You can invoke your function locally by using the following command:
+## Deployment Steps
 
-```bash
-serverless invoke local --function hello
-```
-
-Which should result in response similar to the following:
-
-```
-{
-  "statusCode": 200,
-  "body": "{\n  \"message\": \"Go Serverless v3.0! Your function executed successfully!\",\n  \"input\": \"\"\n}"
-}
-```
-
-
-Alternatively, it is also possible to emulate API Gateway and Lambda locally by using `serverless-offline` plugin. In order to do that, execute the following command:
+Clone the repository
 
 ```bash
-serverless plugin install -n serverless-offline
+git clone https://github.com/Vedashri28/aws-python-http-api.git
 ```
 
-It will add the `serverless-offline` plugin to `devDependencies` in `package.json` file as well as will add it to `plugins` in `serverless.yml`.
+Go to the project
 
-After installation, you can start local emulation with:
-
-```
-serverless offline
+```bash
+cd aws-python-http-api
 ```
 
-To learn more about the capabilities of `serverless-offline`, please refer to its [GitHub repository](https://github.com/dherault/serverless-offline).
+Deploy
+
+```bash
+serverless deploy
+```
+
+View service information
+
+```bash
+serverless info
+```
+
+Remove the deployment
+
+```bash
+serverless remove
+```
+
+---
+
+## Learning Outcomes
+
+Through this project, I learned:
+
+- AWS Lambda fundamentals
+- API Gateway integration
+- Serverless Framework deployment
+- Infrastructure as Code (IaC)
+- Event-driven architecture
+- Deploying cloud-native applications
+- Git and GitHub version control
+
+---
+
+## Future Improvements
+
+- Add multiple API endpoints
+- Connect DynamoDB
+- Implement CRUD operations
+- Add authentication using Amazon Cognito
+- Add CloudWatch logging and monitoring
+
+---
+
+## Author
+
+Vedashri Giri
+
+Aspiring Cloud & DevOps Engineer
